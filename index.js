@@ -29,22 +29,24 @@ function openLandmarkForm(latLng) {
 
     tempInfoWindow.open(map, tempMarker);
 
-    document.getElementById("create").addEventListener("click", () => {
-        let landmark = new Landmark(
-            document.getElementById("titleInput").value,
-            document.getElementById("descInput").value,
-            document.getElementById("imageInput").value,
-            latLng,
-        );
+    google.maps.event.addListenerOnce(tempInfoWindow, "domready", () => {
+        document.getElementById("create").addEventListener("click", () => {
+            let landmark = new Landmark(
+                document.getElementById("titleInput").value,
+                document.getElementById("descInput").value,
+                document.getElementById("imageInput").value,
+                latLng,
+            );
 
-        landmarks.append(landmark);
+            landmarks.push(landmark);
+        });
+
+        document.getElementById("cancel").addEventListener("click", () => {
+            tempMarker.setMap(null);
+            tempMarker = null;
+            tempInfoWindow.close();
+        });
     });
-
-    document.getElementById("cancel").addEventListener("click", () => {
-        tempMarker.setMap(null);
-        tempMarker = null;
-        tempInfoWindow.close();
-    })
 }
 
 function initMap() {
