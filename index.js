@@ -21,7 +21,7 @@ function addLandmarkMarker(landmark) {
         <div class="marker-info">
             <h3>${landmark.title}</h3>
             <p>${landmark.description}</p>
-            <img src="${URL.createObjectURL(landmark.image)}">
+            <img src="${URL.createObjectURL(landmark.image)}" style="width: 200px; max-width: 100%;">
         </div>
     `;
 
