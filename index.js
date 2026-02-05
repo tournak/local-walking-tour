@@ -19,6 +19,10 @@ function initMap() {
     });
 
     map.addListener("click", (event) => {
+        if (tempMarker) {
+            tempMarker.setMap(null);
+        }
+
         tempMarker = new google.maps.Marker({
             position: event.latLng,
             map: map
