@@ -34,7 +34,7 @@ function openLandmarkForm(latLng) {
             let landmark = new Landmark(
                 document.getElementById("titleInput").value,
                 document.getElementById("descInput").value,
-                document.getElementById("imageInput").value,
+                document.getElementById("imageInput").files[0],
                 latLng,
             );
 
