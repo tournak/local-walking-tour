@@ -2,3 +2,8 @@
     height: 800px;
     width: 1200px;
 }
+
+#addLandmarkForm {
+    display: flex;
+    flex-direction: column;
+}

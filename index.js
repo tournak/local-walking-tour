@@ -7,7 +7,45 @@ class Landmark {
     }
 }
 
+let landmarks = [];
 let tempMarker = null;
+let tempInfoWindow = null;
+
+function openLandmarkForm(latLng) {
+    const content = `
+        <div id="addLandmarkForm">
+            <h3>Add a Landmark</h3>
+            <input id="titleInput" placeholder="Title"><br>
+            <textarea id="descInput" placeholder="Description"></textarea><br>
+            <input type="file" id="imageInput"><br>
+            <button id="create">Create</button>
+            <button id="cancel">Cancel</button>
+        </div>
+    `;
+
+    tempInfoWindow = new google.maps.InfoWindow({
+        content: content,
+    });
+
+    tempInfoWindow.open(map, tempMarker);
+
+    document.getElementById("create").addEventListener("click", () => {
+        let landmark = new Landmark(
+            document.getElementById("titleInput").value,
+            document.getElementById("descInput").value,
+            document.getElementById("imageInput").value,
+            latLng,
+        );
+
+        landmarks.append(landmark);
+    });
+
+    document.getElementById("cancel").addEventListener("click", () => {
+        tempMarker.setMap(null);
+        tempMarker = null;
+        tempInfoWindow.close();
+    })
+}
 
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
@@ -23,9 +61,11 @@ function initMap() {
             tempMarker.setMap(null);
         }
 
-        tempMarker = new google.maps.Marker({
+        tempMarker = new google.maps.marker.AdvancedMarkerElement({
+            map: map,
             position: event.latLng,
-            map: map
         });
+
+        openLandmarkForm(event.latLng);
     })
 }
