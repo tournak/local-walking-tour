@@ -29,6 +29,13 @@ function openLandmarkForm(latLng) {
 
     tempInfoWindow.open(map, tempMarker);
 
+    google.maps.event.addListener(tempInfoWindow, "closeclick", () => {
+        if (tempMarker) {
+            tempMarker.setMap(null);
+            tempMarker = null;
+        }
+    });
+
     google.maps.event.addListenerOnce(tempInfoWindow, "domready", () => {
         document.getElementById("create").addEventListener("click", () => {
             let landmark = new Landmark(
@@ -39,6 +46,7 @@ function openLandmarkForm(latLng) {
             );
 
             landmarks.push(landmark);
+            tempInfoWindow.close();
         });
 
         document.getElementById("cancel").addEventListener("click", () => {
@@ -48,6 +56,7 @@ function openLandmarkForm(latLng) {
         });
     });
 }
+
 
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
