@@ -11,6 +11,29 @@ let landmarks = [];
 let tempMarker = null;
 let tempInfoWindow = null;
 
+function addLandmarkMarker(landmark) {
+    const marker = new google.maps.marker.AdvancedMarkerElement({
+        map: map,
+        position: landmark.coordinates,
+    });
+
+    const infoContent = `
+        <div class="marker-info">
+            <h3>${landmark.title}</h3>
+            <p>${landmark.description}</p>
+            <img src="${URL.createObjectURL(landmark.image)}">
+        </div>
+    `;
+
+    const infoWindow = new google.maps.InfoWindow({
+        content: infoContent
+    });
+
+    marker.addListener("gmp-click", () => {
+        infoWindow.open(map, marker);
+    });
+}
+
 function openLandmarkForm(latLng) {
     const content = `
         <div id="addLandmarkForm">
@@ -46,6 +69,7 @@ function openLandmarkForm(latLng) {
             );
 
             landmarks.push(landmark);
+            addLandmarkMarker(landmark);
             tempInfoWindow.close();
         });
 
