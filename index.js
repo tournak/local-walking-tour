@@ -15,7 +15,7 @@ function openLandmarkForm(latLng) {
     const content = `
         <div id="addLandmarkForm">
             <h3>Add a Landmark</h3>
-            <input id="titleInput" placeholder="Title"><br>
+            <input id="titleInput" placeholder="Title" autocomplete="off"><br>
             <textarea id="descInput" placeholder="Description"></textarea><br>
             <input type="file" id="imageInput"><br>
             <button id="create">Create</button>
