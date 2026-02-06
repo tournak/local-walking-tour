@@ -70,6 +70,7 @@ function addLandmarkMarker(landmark) {
         document.querySelector(".deleteButton").addEventListener("click", () => {
             marker.setMap(null);
             landmarks = landmarks.filter(l => l !== landmark);
+            renderLandmarkList();
             infoWindow.close();
         })
     });
