@@ -11,6 +11,20 @@ let landmarks = [];
 let tempMarker = null;
 let tempInfoWindow = null;
 
+function placeTempMarker(latLng) {
+    if (tempMarker) {
+        tempMarker.setMap(null);
+    }
+
+    tempMarker = new google.maps.marker.AdvancedMarkerElement({
+        map: map,
+        position: latLng,
+    });
+
+    openLandmarkForm(latLng);
+}
+
+
 function addLandmarkMarker(landmark) {
     const marker = new google.maps.marker.AdvancedMarkerElement({
         map: map,
@@ -92,15 +106,15 @@ function initMap() {
     });
 
     map.addListener("click", (event) => {
-        if (tempMarker) {
-            tempMarker.setMap(null);
-        }
-
-        tempMarker = new google.maps.marker.AdvancedMarkerElement({
-            map: map,
-            position: event.latLng,
-        });
-
-        openLandmarkForm(event.latLng);
+        placeTempMarker(event.latLng);
     })
+
+    document.getElementById("locateButton").addEventListener("click", () => {
+        navigator.geolocation.getCurrentPosition((pos) => {
+            placeTempMarker({
+                lat: pos.coords.latitude,
+                lng: pos.coords.longitude,
+            });
+        });
+    });
 }
