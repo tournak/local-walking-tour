@@ -123,8 +123,8 @@ function initMap() {
     document.getElementById("coordinatesButton").addEventListener("click", (event) => {
         event.preventDefault();
         placeTempMarker({
-            lat: document.getElementById("latitudeInput").value,
-            lng: document.getElementById("longitudeInput").value,
+            lat: parseFloat(document.getElementById("latitudeInput").value),
+            lng: parseFloat(document.getElementById("longitudeInput").value),
         });
     })
 }
