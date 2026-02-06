@@ -18,7 +18,16 @@ function renderLandmarkList() {
     landmarks.forEach(landmark => {
         let div = document.createElement("div");
         div.className = "landmark-item";
-        div.textContent = landmark.title;
+
+        let img = document.createElement("img");
+        img.src = landmark.imageURL;
+        img.className = "landmark-thumbnail";
+
+        let title = document.createElement("span");
+        title.textContent = landmark.title;
+
+        div.appendChild(img);
+        div.appendChild(title);
 
         div.addEventListener("click", () => {
             map.setCenter(landmark.coordinates);
@@ -30,6 +39,7 @@ function renderLandmarkList() {
         landmarkList.appendChild(div);
     });
 }
+
 
 function highlightListItem(listItem) {
     landmarks.forEach(landmark => {
