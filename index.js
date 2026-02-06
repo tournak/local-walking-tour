@@ -36,7 +36,7 @@ function addLandmarkMarker(landmark) {
             <h3>${landmark.title}</h3>
             <p>${landmark.description}</p>
             <img src="${landmark.imageURL}" style="width: 200px; max-width: 100%;" alt=${landmark.title}>
-            <button id="deleteButton">Remove Marker</button>
+            <button class="deleteButton">Remove Marker</button>
         </div>
     `;
 
@@ -46,13 +46,13 @@ function addLandmarkMarker(landmark) {
 
     marker.addListener("gmp-click", () => {
         infoWindow.open(map, marker);
+    });
 
-        google.maps.event.addListener(infoWindow, "domready", () => {
-            document.getElementById("deleteButton").addEventListener("click", () => {
-                marker.setMap(null);
-                landmarks = landmarks.filter(l => l !== landmark);
-                infoWindow.close();
-            })
+    google.maps.event.addListener(infoWindow, "domready", () => {
+        document.querySelector(".deleteButton").addEventListener("click", () => {
+            marker.setMap(null);
+            landmarks = landmarks.filter(l => l !== landmark);
+            infoWindow.close();
         })
     });
 }
