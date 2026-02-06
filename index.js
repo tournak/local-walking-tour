@@ -178,6 +178,8 @@ function initMap() {
                 lat: pos.coords.latitude,
                 lng: pos.coords.longitude
             });
+        }, () => {
+            alert("Could not access your location. Using default map location.");
         }
     );
 
