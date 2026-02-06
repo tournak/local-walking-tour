@@ -187,15 +187,6 @@ function initMap() {
         placeTempMarker(event.latLng);
     })
 
-    document.getElementById("locateButton").addEventListener("click", () => {
-        navigator.geolocation.getCurrentPosition((pos) => {
-            placeTempMarker({
-                lat: pos.coords.latitude,
-                lng: pos.coords.longitude,
-            });
-        });
-    });
-
     document.getElementById("coordinatesButton").addEventListener("click", (event) => {
         event.preventDefault();
         placeTempMarker({
