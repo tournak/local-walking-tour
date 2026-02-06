@@ -172,6 +172,15 @@ function initMap() {
         draggingCursor: "grab",
     });
 
+    navigator.geolocation.getCurrentPosition(
+        (pos) => {
+            map.setCenter({
+                lat: pos.coords.latitude,
+                lng: pos.coords.longitude
+            });
+        }
+    );
+
     map.addListener("click", (event) => {
         placeTempMarker(event.latLng);
     })
