@@ -2,7 +2,7 @@ class Landmark {
     constructor(title, description, image, coordinates) {
         this.title = title;
         this.description = description;
-        this.image = image;
+        this.imageURL = URL.createObjectURL(image);
         this.coordinates = coordinates;
     }
 }
@@ -35,7 +35,7 @@ function addLandmarkMarker(landmark) {
         <div class="marker-info">
             <h3>${landmark.title}</h3>
             <p>${landmark.description}</p>
-            <img src="${URL.createObjectURL(landmark.image)}" style="width: 200px; max-width: 100%;" alt=${landmark.title}>
+            <img src="${landmark.imageURL}" style="width: 200px; max-width: 100%;" alt=${landmark.title}>
         </div>
     `;
 
