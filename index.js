@@ -22,6 +22,7 @@ function renderLandmarkList() {
 
         div.addEventListener("click", () => {
             map.setCenter(landmark.coordinates);
+            google.maps.event.trigger(landmark.marker, "gmp-click");
         });
 
         landmark.listItem = div;
@@ -48,6 +49,8 @@ function addLandmarkMarker(landmark) {
         map: map,
         position: landmark.coordinates,
     });
+
+    landmark.marker = marker;
 
     const infoContent = `
         <div class="marker-info">
