@@ -23,11 +23,20 @@ function renderLandmarkList() {
         div.addEventListener("click", () => {
             map.setCenter(landmark.coordinates);
             google.maps.event.trigger(landmark.marker, "gmp-click");
+            highlightListItem(div);
         });
 
         landmark.listItem = div;
         landmarkList.appendChild(div);
     });
+}
+
+function highlightListItem(listItem) {
+    landmarks.forEach(landmark => {
+        landmark.listItem.classList.remove("highlight");
+    })
+
+    listItem.classList.add("highlight");
 }
 
 function placeTempMarker(latLng) {
