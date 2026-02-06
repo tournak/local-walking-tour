@@ -119,4 +119,12 @@ function initMap() {
             });
         });
     });
+
+    document.getElementById("coordinatesButton").addEventListener("click", (event) => {
+        event.preventDefault();
+        placeTempMarker({
+            lat: document.getElementById("latitudeInput").value,
+            lng: document.getElementById("longitudeInput").value,
+        });
+    })
 }
