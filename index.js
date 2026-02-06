@@ -10,6 +10,7 @@ class Landmark {
 let landmarks = [];
 let tempMarker = null;
 let tempInfoWindow = null;
+let activeInfoWindow = null;
 
 function renderLandmarkList() {
     let landmarkList = document.getElementById("landmarkList");
@@ -85,7 +86,14 @@ function addLandmarkMarker(landmark) {
     });
 
     marker.addListener("gmp-click", () => {
+        if (activeInfoWindow) {
+            activeInfoWindow.close();
+        }
+
         infoWindow.open(map, marker);
+        activeInfoWindow = infoWindow;
+
+        highlightListItem(landmark.listItem);
     });
 
     google.maps.event.addListener(infoWindow, "domready", () => {
@@ -118,6 +126,11 @@ function openLandmarkForm(latLng) {
         content: content,
     });
 
+    if (activeInfoWindow) {
+        activeInfoWindow.close();
+    }
+
+    activeInfoWindow = tempInfoWindow;
     tempInfoWindow.open(map, tempMarker);
 
     google.maps.event.addListener(tempInfoWindow, "closeclick", () => {
