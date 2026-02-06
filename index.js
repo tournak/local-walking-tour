@@ -11,6 +11,24 @@ let landmarks = [];
 let tempMarker = null;
 let tempInfoWindow = null;
 
+function renderLandmarkList() {
+    let landmarkList = document.getElementById("landmarkList");
+    landmarkList.innerHTML = "<h3>Landmark List</h3>";
+
+    landmarks.forEach(landmark => {
+        let div = document.createElement("div");
+        div.className = "landmark-item";
+        div.textContent = landmark.title;
+
+        div.addEventListener("click", () => {
+            map.setCenter(landmark.coordinates);
+        });
+
+        landmark.listItem = div;
+        landmarkList.appendChild(div);
+    });
+}
+
 function placeTempMarker(latLng) {
     if (tempMarker) {
         tempMarker.setMap(null);
@@ -55,6 +73,8 @@ function addLandmarkMarker(landmark) {
             infoWindow.close();
         })
     });
+
+    renderLandmarkList();
 }
 
 function openLandmarkForm(latLng) {
