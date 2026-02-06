@@ -35,7 +35,7 @@ function addLandmarkMarker(landmark) {
         <div class="marker-info">
             <h3>${landmark.title}</h3>
             <p>${landmark.description}</p>
-            <img src="${URL.createObjectURL(landmark.image)}" style="width: 200px; max-width: 100%;">
+            <img src="${URL.createObjectURL(landmark.image)}" style="width: 200px; max-width: 100%;" alt=${landmark.title}>
         </div>
     `;
 
@@ -52,11 +52,13 @@ function openLandmarkForm(latLng) {
     const content = `
         <div id="addLandmarkForm">
             <h3>Add a Landmark</h3>
-            <input id="titleInput" placeholder="Title" autocomplete="off"><br>
-            <textarea id="descInput" placeholder="Description"></textarea><br>
-            <input type="file" id="imageInput"><br>
-            <button id="create">Create</button>
-            <button id="cancel">Cancel</button>
+            <form>
+                <input id="titleInput" placeholder="Title" autocomplete="off" required><br>
+                <textarea id="descInput" placeholder="Description" required></textarea><br>
+                <input type="file" id="imageInput" required><br>
+                <button id="create">Create</button>
+                <button id="cancel">Cancel</button>
+            </form>
         </div>
     `;
 
