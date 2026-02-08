@@ -70,6 +70,33 @@ p {
     overflow-y: auto;
 }
 
+.landmark-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    color: var(--text-primary);
+    background: #fafafa;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 2px solid transparent;
+}
+
+.landmark-item:hover,
+.landmark-item.highlight {
+    border-color: black;
+}
+
+.landmark-thumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+    flex-shrink: 0;
+}
+
 /* Landmark Forms */
 
 #addLandmarkForm form {
@@ -174,6 +201,3 @@ p {
     background: #1d4ed8;
 }
 
-.highlight {
-    font-weight: bold;
-}
