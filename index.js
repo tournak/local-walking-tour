@@ -74,9 +74,9 @@ function addLandmarkMarker(landmark) {
 
     const infoContent = `
         <div class="marker-info">
-            <h3>${landmark.title}</h3>
-            <p>${landmark.description}</p>
-            <img src="${landmark.imageURL}" style="width: 200px; max-width: 100%;" alt=${landmark.title}>
+            <h3 class="info-title">${landmark.title}</h3>
+            <img src="${landmark.imageURL}" class="info-image" alt="${landmark.title}">
+            <p class="info-description">${landmark.description}</p>
             <button class="deleteButton">Remove Marker</button>
         </div>
     `;
@@ -111,13 +111,13 @@ function addLandmarkMarker(landmark) {
 function openLandmarkForm(latLng) {
     const content = `
         <div id="addLandmarkForm">
-            <h3>Add a Landmark</h3>
+            <h3 class="form-title">Add a Landmark</h3>
             <form>
-                <input id="titleInput" placeholder="Title" autocomplete="off" required><br>
-                <textarea id="descInput" placeholder="Description" required></textarea><br>
-                <input type="file" id="imageInput" required><br>
-                <button id="create">Create</button>
-                <button id="cancel">Cancel</button>
+                <input id="titleInput" placeholder="Title" autocomplete="off" required>
+                <textarea id="descInput" placeholder="Description" required></textarea>
+                <input type="file" id="imageInput" accept="image/*" required>
+                <button id="create" type="submit">Create</button>
+                <button id="cancel" type="button">Cancel</button>
             </form>
         </div>
     `;
