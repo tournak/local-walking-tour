@@ -180,9 +180,13 @@ function initMap() {
             });
         }, () => {
             alert("Could not access your location. Using default map location.");
+        },
+        {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
         }
     );
-
     map.addListener("click", (event) => {
         placeTempMarker(event.latLng);
     })
