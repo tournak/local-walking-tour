@@ -99,6 +99,8 @@ function addLandmarkMarker(landmark) {
     google.maps.event.addListener(infoWindow, "domready", () => {
         document.querySelector(".deleteButton").addEventListener("click", () => {
             marker.setMap(null);
+            tempMarker.setMap(null);
+            tempMarker = null;
             landmarks = landmarks.filter(l => l !== landmark);
             renderLandmarkList();
             infoWindow.close();
