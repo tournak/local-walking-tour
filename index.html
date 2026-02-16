@@ -15,11 +15,12 @@
     <div id="mapContainer">
         <div id="map"></div>
         <div id="controls">
-            Click anywhere on the map to place a marker<br>
+            <div>To add a landmark, click anywhere on the map OR:</div>
+            <button id="useMyLocationButton" type="button">Use My Current Location</button><br>
             <form>
                 <button id="coordinatesButton">Find These Coordinates</button>
-                <input type="number" id="latitudeInput" placeholder="Latitude" required>
-                <input type="number" id="longitudeInput" placeholder="Longitude" required>
+                <input type="number" id="latitudeInput" placeholder="Latitude" step="any" required>
+                <input type="number" id="longitudeInput" placeholder="Longitude" step="any" required>
             </form>
         </div>
     </div>

@@ -200,4 +200,24 @@ function initMap() {
             lng: parseFloat(document.getElementById("longitudeInput").value),
         });
     })
+
+    document.getElementById("useMyLocationButton").addEventListener("click", () => {
+        navigator.geolocation.getCurrentPosition(
+            (pos) => {
+                const userLocation = {
+                    lat: pos.coords.latitude,
+                    lng: pos.coords.longitude
+                };
+                map.setCenter(userLocation);
+                placeTempMarker(userLocation);
+            }, () => {
+                alert("Could not access your location. Using default map location.");
+            },
+            {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            }
+        );
+    })
 }
